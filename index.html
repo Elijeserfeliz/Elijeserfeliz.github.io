@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elige Ser Feliz: Prevención de Drogas</title>
+    <link rel="icon" href="https://img.icons8.com/ios-filled/50/000000/green-leaf.png" type="image/png"> 
+
+    <style>
+        /* Variables CSS para consistencia */
+        :root {
+            --primary-color: #4CAF50; /* Verde vibrante */
+            --secondary-color: #2196F3; /* Azul para énfasis */
+            --accent-color: #FFC107; /* Amarillo para destacar */
+            --text-color: #333;
+            --light-grey: #f4f4f4;
+            --dark-grey: #666;
+            --white: #fff;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--white);
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Header --- */
+        header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 15px 0;
+            box-shadow: 0 2px 5px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap; /* Para responsive */
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .logo h1 {
+            font-size: 1.8em;
+            margin: 0;
+            color: var(--white);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .menu-toggle {
+            display: none; /* Oculto por defecto en desktop */
+            background: none;
+            border: none;
+            font-size: 2em;
+            color: var(--white);
+            cursor: pointer;
+        }
+
+        /* Botones */
+        .btn-primary, .btn-secondary {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--secondary-color);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: #1976D2; /* Un azul más oscuro */
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: var(--light-grey);
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* --- Hero Section --- */
+        .hero-section {
+            /* Imagen de fondo del héroe - Ejemplo: Persona con vida saludable/naturaleza */
+            background: url('https://images.pexels.com/photos/388415/pexels-photo-388415.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') no-repeat center center/cover;
+            color: var(--white);
+            text-align: center;
+            padding: 100px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 500px;
+            position: relative;
+        }
+
+        .hero-section::before { /* Capa de opacidad para mejor legibilidad del texto */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* 50% de opacidad negra */
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .hero-content h2 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        }
+
+        .hero-content p {
+            font-size: 1.4em;
+            margin-bottom: 30px;
+        }
+
+        /* --- Secciones de Contenido General --- */
+        .content-section {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .content-section h2 {
+            font-size: 2.5em;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .content-section h2::after { /* Subrayado decorativo */
+            content: '';
+            display: block;
+            width: 60%;
+            height: 4px;
+            background-color: var(--accent-color);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .content-section p {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .grey-bg {
+            background-color: var(--light-grey);
+        }
+
+        /* Tarjetas */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+            text-align: left;
+        }
+
+        .card {
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px var(--shadow);
+            padding: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            font-size: 1.6em;
+        }
+
+        .card p {
+            font-size: 1em;
+            line-height: 1.7;
+            color: var(--dark-grey);
+        }
+
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 15px;
+        }
+
+        .card ul li {
+            /* Icono de check - Ejemplo: Un checkmark de Font Awesome o similar */
+            background: url('https://img.icons8.com/ios-filled/24/2196F3/checked--v1.png') no-repeat left center; 
+            background-size: 20px;
+            padding-left: 30px;
+            margin-bottom: 10px;
+            color: var(--dark-grey);
+        }
+
+        /* Sección de Casos y Datos */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .stat-item {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px var(--shadow);
+        }
+
+        .stat-item .number {
+            font-size: 3em;
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .stat-item .label {
+            font-size: 1.2em;
+            color: var(--dark-grey);
+        }
+
+        /* Sección Elige Ser Feliz (CTA) */
+        .cta-section {
+            /* Imagen inspiradora para la sección "Elige Ser Feliz" - Ejemplo: Personas sonriendo, haciendo ejercicio */
+            background: linear-gradient(rgba(76, 175, 80, 0.9), rgba(33, 150, 243, 0.9)), url('https://images.pexels.com/photos/380769/pexels-photo-380769.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') no-repeat center center/cover;
+            color: var(--white);
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            color: var(--white); /* Sobreescribir el color del título para que se vea bien */
+        }
+
+        .cta-section p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-section .btn-primary {
+            background-color: var(--accent-color);
+            color: var(--text-color);
+            font-size: 1.2em;
+            padding: 15px 30px;
+        }
+
+        .cta-section .btn-primary:hover {
+            background-color: #FFDA44; /* Un amarillo más oscuro */
+        }
+
+        /* Recursos de Ayuda */
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .resource-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px var(--shadow);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Para que el botón quede abajo */
+            align-items: center;
+        }
+
+        .resource-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .resource-card p {
+            color: var(--dark-grey);
+            margin-bottom: 20px;
+            flex-grow: 1; /* Para que el párrafo ocupe el espacio */
+        }
+
+        /* Contacto */
+        #contactForm {
+            max-width: 600px;
+            margin: 40px auto 0;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            text-align: left;
+        }
+
+        #contactForm input,
+        #contactForm textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        #contactForm input:focus,
+        #contactForm textarea:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 5px rgba(33, 150, 243, 0.3);
+        }
+
+        #contactForm button {
+            width: auto;
+            align-self: center; /* Centrar el botón de enviar */
+        }
+
+        #formMessage {
+            margin-top: 20px;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--dark-grey);
+            color: var(--white);
+            padding: 30px 0;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        footer .social-links {
+            margin-top: 15px;
+        }
+
+        footer .social-links a {
+            margin: 0 10px;
+            display: inline-block;
+        }
+
+        footer .social-links img {
+            width: 30px;
+            height: 30px;
+            filter: invert(100%); /* Para hacer los iconos blancos */
+            transition: transform 0.3s ease;
+        }
+
+        footer .social-links img:hover {
+            transform: scale(1.1);
+        }
+
+        /* --- Media Queries para Responsive Design --- */
+        @media (max-width: 768px) {
+            header .container {
+                flex-direction: column;
+            }
+            .logo {
+                margin-bottom: 15px;
+            }
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                display: none; /* Ocultar menú en móviles por defecto */
+                background-color: var(--primary-color);
+                position: absolute;
+                top: 80px; /* Ajustar según la altura del header */
+                left: 0;
+                right: 0;
+                padding: 10px 0;
+                box-shadow: 0 5px 10px var(--shadow);
+            }
+            nav ul.active {
+                display: flex; /* Mostrar menú cuando esté activo */
+            }
+            nav ul li {
+                margin: 10px 0;
+            }
+            .menu-toggle {
+                display: block; /* Mostrar botón de menú en móviles */
+                position: absolute;
+                right: 20px;
+                top: 20px;
+            }
+
+            .hero-content h2 {
+                font-size: 2.5em;
+            }
+            .hero-content p {
+                font-size: 1.1em;
+            }
+
+            .content-section h2 {
+                font-size: 2em;
+            }
+            .content-section p {
+                font-size: 1em;
+            }
+
+            .card-grid, .stats-grid, .resource-grid {
+                grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo h1 {
+                font-size: 1.5em;
+            }
+            .hero-content h2 {
+                font-size: 2em;
+            }
+            .hero-content p {
+                font-size: 0.9em;
+            }
+            .btn-primary, .btn-secondary {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+            .content-section {
+                padding: 40px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="https://img.icons8.com/ios-filled/50/FFFFFF/heart-with-leaves.png" alt="Logo Elige Ser Feliz">
+                <h1>Elige Ser Feliz</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#introduccion">Inicio</a></li>
+                    <li><a href="#tipos">Tipos de Drogas</a></li>
+                    <li><a href="#casos-datos">Casos y Datos</a></li>
+                    <li><a href="#efectos">Efectos</a></li>
+                    <li><a href="#consecuencias">Consecuencias</a></li>
+                    <li><a href="#prevencion">Elige Ser Feliz</a></li>
+                    <li><a href="#recursos">Ayuda</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+            <button class="menu-toggle" aria-label="Abrir menú">☰</button>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="hero-section">
+            <div class="hero-content">
+                <h2>Tu Vida, Tu Elección.</h2>
+                <p>Descubre el poder de una vida libre de drogas. Elige ser feliz.</p>
+                <a href="#prevencion" class="btn-primary">¡Empieza a Elegir!</a>
+            </div>
+        </section>
+
+        <section id="introduccion" class="content-section">
+            <div class="container">
+                <h2>Bienvenido a "Elige Ser Feliz"</h2>
+                <p>En "Elige Ser Feliz", creemos firmemente que cada persona tiene el poder de construir una vida plena y libre de adicciones. Este espacio está diseñado para informarte, inspirarte y brindarte las herramientas necesarias para tomar decisiones conscientes y saludables sobre el consumo de drogas.</p>
+                <p>La prevención no es solo decir "no"; es entender, elegir y construir un futuro donde la felicidad sea tu principal motor. ¡Juntos podemos lograrlo!</p>
+                <div class="card-grid">
+                    <div class="card">
+                        <h3>Información Clara</h3>
+                        <p>Accede a datos verídicos y explicaciones sencillas sobre los distintos tipos de drogas y sus efectos.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Historias Inspiradoras</h3>
+                        <p>Conoce casos reales de superación y cómo personas han elegido una vida libre de adicciones.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Recursos de Ayuda</h3>
+                        <p>Encuentra apoyo profesional y comunitario si tú o alguien que conoces lo necesita.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tipos" class="content-section grey-bg">
+            <div class="container">
+                <h2>Clasificación y Descripción de las Drogas</h2>
+                <p>Las drogas son sustancias que alteran el funcionamiento del organismo y el sistema nervioso central. Entender sus tipos y cómo actúan es el primer paso para la prevención.</p>
+                <div class="card-grid">
+                    <div class="card">
+                        <h3>Estimulantes</h3>
+                        <p>Aumentan la actividad cerebral, la energía y el estado de alerta. Pueden generar dependencia psicológica y física rápidamente.</p>
+                        <ul>
+                            <li><strong>Ejemplos:</strong> Cocaína, metanfetaminas, cafeína (en exceso), algunos medicamentos para el TDAH.</li>
+                            <li><strong>Riesgos:</strong> Problemas cardíacos, ansiedad, psicosis, agotamiento, derrame cerebral.</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Depresores</h3>
+                        <p>Disminuyen la actividad cerebral, produciendo relajación, sedación y somnolencia. Su uso indebido puede ser mortal por sobredosis.</p>
+                        <ul>
+                            <li><strong>Ejemplos:</strong> Alcohol, tranquilizantes (benzodiacepinas), opiáceos (heroína, morfina, fentanilo).</li>
+                            <li><strong>Riesgos:</strong> Depresión respiratoria, coma, adicción severa, daño hepático (alcohol).</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Alucinógenos</h3>
+                        <p>Alteran la percepción de la realidad, el pensamiento y las emociones, creando alucinaciones y distorsiones sensoriales.</p>
+                        <ul>
+                            <li><strong>Ejemplos:</strong> LSD, hongos psilocibios, éxtasis (MDMA), ketamina.</li>
+                            <li><strong>Riesgos:</strong> Ataques de pánico, paranoia, psicosis persistente, "flashbacks".</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Cannabis y Derivados</h3>
+                        <p>Afecta la percepción, la memoria y el aprendizaje. Aunque legal en algunos lugares, su consumo conlleva riesgos, especialmente en adolescentes.</p>
+                        <ul>
+                            <li><strong>Ejemplos:</strong> Marihuana, hachís, aceites de cannabis (con THC).</li>
+                            <li><strong>Riesgos:</strong> Problemas respiratorios, riesgo de psicosis, dependencia, impacto en el desarrollo cerebral.</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Drogas de Diseño / NPS</h3>
+                        <p>Sustancias químicas que imitan los efectos de drogas conocidas, pero con composiciones desconocidas y peligrosas, a menudo más potentes.</p>
+                        <ul>
+                            <li><strong>Ejemplos:</strong> Sales de baño, K2/Spice, NBOMe.</li>
+                            <li><strong>Riesgos:</strong> Efectos impredecibles y severos, sobredosis, psicosis, muerte.</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Inhalables</h3>
+                        <p>Productos comunes del hogar o industriales que se inhalan para obtener un efecto psicoactivo. Muy dañinos y pueden causar muerte súbita.</p>
+                        <ul>
+                            <li><strong>Ejemplos:</strong> Pegamentos, solventes, aerosoles, gas de butano.</li>
+                            <li><strong>Riesgos:</strong> Daño cerebral irreversible, daño a órganos, arritmias cardíacas, asfixia.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="casos-datos" class="content-section">
+            <div class="container">
+                <h2>Realidades y Cifras: Conoce el Impacto</h2>
+                <p>Los datos nos ayudan a entender la magnitud del problema y a tomar conciencia. Detrás de cada número, hay una historia que podemos cambiar juntos.</p>
+
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="number">1 de cada 10</div>
+                        <div class="label">Adolescentes en México ha consumido drogas alguna vez.</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="number">52%</div>
+                        <div class="label">De los que piden ayuda, lo hacen por problemas con el alcohol o el tabaco.</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="number">28%</div>
+                        <div class="label">De los adictos inician el consumo antes de los 17 años.</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="number">Cada año</div>
+                        <div class="label">Miles de vidas son impactadas por las adicciones en México.</div>
+                    </div>
+                </div>
+
+                <h3>Historias de Superación</h3>
+                <p>Queremos compartir la fuerza de aquellos que eligieron la recuperación y hoy viven felices. Sus testimonios son un faro de esperanza.</p>
+                <div class="card-grid">
+                    <div class="card">
+                        <h3>"El camino a la libertad" - Ana G.</h3>
+                        <p>"Pensé que las drogas me daban 'alas', pero solo me ataban. Con ayuda profesional y el apoyo de mi familia, hoy vuelo libre y reconstruyo mi vida. Cada día elijo mi bienestar."</p>
+                    </div>
+                    <div class="card">
+                        <h3>"Un nuevo comienzo" - Carlos M.</h3>
+                        <p>"Caí muy bajo, perdí todo. Pero decidí que era momento de un cambio. Fue difícil, pero la terapia y el grupo de apoyo me dieron las herramientas para un nuevo comienzo. Ahora, disfruto cada pequeño momento."</p>
+                    </div>
+                </div>
+                <p class="small-text"><i>Fuente de datos: CONADIC (Comisión Nacional contra las Adicciones), Encuestas Nacionales de Consumo de Drogas, Alcohol y Tabaco (ENCODAT). Datos aproximados para fines ilustrativos.</i></p>
+            </div>
+        </section>
+
+        <section id="efectos" class="content-section grey-bg">
+            <div class="container">
+                <h2>Cómo Afectan las Drogas a Tu Cuerpo y Mente</h2>
+                <p>El consumo de drogas tiene un impacto profundo y multifacético en el organismo, afectando desde el cerebro hasta los sistemas vitales. Entender estos efectos es crucial para dimensionar los riesgos.</p>
+
+                <div class="effects-list">
+                    <div class="effect-item">
+                        <h3>Sistema Nervioso Central (Cerebro)</h3>
+                        <p>Alteraciones en neurotransmisores, daño neuronal, problemas de memoria, concentración y aprendizaje, cambios de humor, trastornos psicóticos, depresión, ansiedad.</p>
+                    </div>
+                    <div class="effect-item">
+                        <h3>Sistema Cardiovascular</h3>
+                        <p>Aumento de la presión arterial, arritmias, infartos, derrames cerebrales, daños en los vasos sanguíneos.</p>
+                    </div>
+                    <div class="effect-item">
+                        <h3>Sistema Respiratorio</h3>
+                        <p>Bronquitis, enfisema, cáncer de pulmón, infecciones respiratorias.</p>
+                    </div>
+                    <div class="effect-item">
+                        <h3>Hígado y Riñones</h3>
+                        <p>Daño hepático (cirrosis), hepatitis, insuficiencia renal.</p>
+                    </div>
+                    <div class="effect-item">
+                        <h3>Sistema Inmunológico</h3>
+                        <p>Debilitamiento del sistema inmune, mayor susceptibilidad a infecciones (VIH, hepatitis C por compartir jeringas).</p>
+                    </div>
+                    <div class="effect-item">
+                        <h3>Salud Mental</h3>
+                        <p>Agravamiento de condiciones preexistentes, desarrollo de nuevas enfermedades mentales, psicosis, paranoia, pensamientos suicidas, alucinaciones.</p>
+                    </div>
+                    <div class="effect-item">
+                        <h3>Salud Dental y Estética</h3>
+                        <p>Caries severas, pérdida de dientes, envejecimiento prematuro de la piel, úlceras y cicatrices.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="consecuencias" class="content-section">
+            <div class="container">
+                <h2>Más Allá de los Efectos: Las Consecuencias en Tu Vida</h2>
+                <p>El consumo de drogas no solo afecta la salud, sino que tiene un efecto dominó en todas las esferas de la vida de una persona y de quienes le rodean.</p>
+
+                <div class="card-grid">
+                    <div class="card">
+                        <h3>Relaciones Personales</h3>
+                        <p>Ruptura de lazos familiares y de amistad, aislamiento, desconfianza, conflictos constantes, violencia doméstica.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Rendimiento Académico y Laboral</h3>
+                        <p>Bajo desempeño escolar, deserción, dificultad para mantener un empleo, despidos, problemas económicos severos.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Problemas Legales</h3>
+                        <p>Arrestos por posesión, tráfico o delitos relacionados con el consumo, multas, antecedentes penales, encarcelamiento.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Economía Personal y Familiar</h3>
+                        <p>Gastos excesivos en drogas, deudas, pérdida de bienes, empobrecimiento familiar, impacto en el presupuesto del hogar.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Seguridad y Riesgos</h3>
+                        <p>Mayor probabilidad de accidentes de tráfico, lesiones, participación en actos delictivos, exposición a violencia.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Pérdida de la Calidad de Vida</h3>
+                        <p>Deterioro general del bienestar, falta de motivación, desesperanza, descuido personal, pérdida de la libertad y autonomía.</p>
+                    </div>
+                </div>
+                <p>Estas consecuencias no solo recaen en el individuo, sino que generan un impacto negativo en la familia, la comunidad y la sociedad en general.</p>
+            </div>
+        </section>
+
+        <section id="prevencion" class="content-section cta-section">
+            <div class="container">
+                <h2>¡Elige Ser Feliz! Estrategias para una Vida Plena</h2>
+                <p>La prevención es tu superpoder. Significa tomar decisiones informadas, construir tu fortaleza interna y rodearte de un ambiente que te impulse a crecer.</p>
+                <p>Aquí te presentamos algunas estrategias clave para que elijas una vida llena de bienestar:</p>
+                <div class="card-grid">
+                    <div class="card">
+                        <h3>Comunicación Abierta</h3>
+                        <p>Habla con tus padres, amigos o mentores. Expresa tus sentimientos y dudas. No tengas miedo de pedir ayuda o de decir "no".</p>
+                    </div>
+                    <div class="card">
+                        <h3>Desarrolla Tu Autoestima</h3>
+                        <p>Reconoce tus fortalezas, valora tus logros y aprende de tus errores. Cree en ti mismo y en tu capacidad para superar desafíos.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Habilidades para Decir "No"</h3>
+                        <p>Aprende a resistir la presión de grupo de forma asertiva. Tu bienestar es más importante que la aprobación de los demás.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Estilo de Vida Saludable</h3>
+                        <p>Practica deporte, come bien, duerme lo suficiente. Un cuerpo y mente sanos son tu mejor escudo contra las adicciones.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Encuentra Pasiones</h3>
+                        <p>Dedica tiempo a hobbies, deportes, arte o actividades que disfrutes. Las actividades positivas llenan tu vida y te dan propósito.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Manejo del Estrés</h3>
+                        <p>Aprende técnicas de relajación, meditación o busca apoyo cuando te sientas abrumado. Las drogas no son una solución para los problemas.</p>
+                    </div>
+                </div>
+                <a href="#recursos" class="btn-primary">¡Necesitas Ayuda? Conoce Nuestros Recursos!</a>
+            </div>
+        </section>
+
+        <section id="recursos" class="content-section grey-bg">
+            <div class="container">
+                <h2>Recursos de Ayuda</h2>
+                <p>Si tú o alguien que conoces necesita apoyo, aquí tienes recursos confiables y líneas de ayuda en México:</p>
+                <div class="resource-grid">
+                    <div class="resource-card">
+                        <h3>Líneas de Apoyo</h3>
+                        <p>Asistencia telefónica y virtual para orientación y crisis.</p>
+                        <ul>
+                            <li><a href="https://www.gob.mx/salud/conadic" target="_blank" class="btn-secondary">Línea de la Vida (CONADIC)</a></li>
+                            <li><a href="http://www.saptel.org.mx" target="_blank" class="btn-secondary">SAPTEL (Apoyo Psicológico)</a></li>
+                            <li><a href="https://www.iapa.cdmx.gob.mx/" target="_blank" class="btn-secondary">IAPA CDMX (WhatsApp/Teléfono)</a></li>
+                        </ul>
+                    </div>
+                    <div class="resource-card">
+                        <h3>Centros de Rehabilitación</h3>
+                        <p>Opciones de tratamiento y rehabilitación profesional.</p>
+                        <ul>
+                            <li><a href="https://www.cij.org.mx:89/Redatencion/redatencionmapa.html" target="_blank" class="btn-secondary">Centros de Integración Juvenil (CIJ)</a></li>
+                            <li><a href="https://imsama.edomex.gob.mx/cepra" target="_blank" class="btn-secondary">CEPRA Edo. México</a></li>
+                            <li><a href="https://montefenix.org.mx/" target="_blank" class="btn-secondary">Monte Fénix</a></li>
+                            <li><a href="https://oceanica.com.mx/" target="_blank" class="btn-secondary">Clínica Oceánica</a></li>
+                        </ul>
+                    </div>
+                    <div class="resource-card">
+                        <h3>Grupos de Apoyo</h3>
+                        <p>Comunidades de ayuda mutua con experiencias compartidas.</p>
+                        <ul>
+                            <li><a href="https://www.aamexico.org.mx" target="_blank" class="btn-secondary">Alcohólicos Anónimos (AA)</a></li>
+                            <li><a href="https://alanon.mx/al-anon" target="_blank" class="btn-secondary">Al-Anon (Familiares y Amigos)</a></li>
+                            <li><a href="https://www.namxico.org.mx/" target="_blank" class="btn-secondary">Narcóticos Anónimos (NA)</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <p style="margin-top: 30px;">Si te encuentras en una situación de riesgo inmediato, por favor, contacta a los servicios de emergencia de tu localidad.</p>
+            </div>
+        </section>
+
+        <section id="contacto" class="content-section">
+            <div class="container">
+                <h2>Contáctanos</h2>
+                <p>¿Tienes dudas o necesitas más información? Envíanos un mensaje.</p>
+                <form id="contactForm">
+                    <input type="text" id="name" placeholder="Tu Nombre" required>
+                    <input type="email" id="email" placeholder="Tu Correo Electrónico" required>
+                    <textarea id="message" placeholder="Tu Mensaje" rows="5" required></textarea>
+                    <button type="submit" class="btn-primary">Enviar Mensaje</button>
+                </form>
+                <div id="formMessage"></div>
+            </div>
+        </section>
+    </main>
+<section class="acknowledgement-section" style="text-align: center; padding: 40px 20px; background-color: #f9f9f9; color: #555; font-size: 1.1em; border-top: 1px solid #eee;">
+    <div class="container">
+        <p>Esta página fue creada con el propósito de ayudar a quienes lo necesitan, por parte de:</p>
+        <p style="font-weight: bold; margin-top: 10px;">Claudio, Luis, Diego, Israel, Patricio, Dulce y Renata.</p>
+    </div>
+</section>
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Elige Ser Feliz. Todos los derechos reservados.</p>
+            <div class="social-links">
+                <a href="#"><img src="https://img.icons8.com/ios-filled/50/FFFFFF/facebook-new.png" alt="Facebook"></a>
+                <a href="#"><img src="https://img.icons8.com/ios-filled/50/FFFFFF/instagram-new.png" alt="Instagram"></a>
+                <a href="#"><img src="https://img.icons8.com/ios-filled/50/FFFFFF/twitterx.png" alt="Twitter"></a>
+            </div>
+            <p>Hecho con ❤️ en Ixtapaluca, Estado de México, México.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Menú Hamburguesa ---
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navUl = document.querySelector('nav ul');
+
+            menuToggle.addEventListener('click', () => {
+                navUl.classList.toggle('active');
+            });
+
+            // Cierra el menú si se hace clic fuera de él o en un enlace
+            document.addEventListener('click', (event) => {
+                if (!navUl.contains(event.target) && !menuToggle.contains(event.target) && navUl.classList.contains('active')) {
+                    navUl.classList.remove('active');
+                }
+            });
+
+            navUl.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navUl.classList.contains('active')) {
+                        navUl.classList.remove('active');
+                    }
+                });
+            });
+
+            // --- Formulario de Contacto (Ejemplo Básico) ---
+            const contactForm = document.getElementById('contactForm');
+            const formMessage = document.getElementById('formMessage');
+
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(event) {
+                    event.preventDefault(); // Evita el envío tradicional del formulario
+
+                    const name = document.getElementById('name').value;
+                    const email = document.getElementById('email').value;
+                    const message = document.getElementById('message').value;
+
+                    // Validación simple
+                    if (name && email && message) {
+                        // Aquí es donde normalmente enviarías los datos a un servidor
+                        // Usando fetch() o XMLHttpRequest. Para este ejemplo, solo simularemos.
+
+                        formMessage.textContent = '¡Gracias por tu mensaje, ' + name + '! Lo hemos recibido.';
+                        formMessage.style.color = 'var(--primary-color)';
+                        contactForm.reset(); // Limpiar el formulario
+                        
+                        // En un entorno real, harías algo como esto:
+                        /*
+                        fetch('/api/contact', { // Endpoint de tu API
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({ name, email, message }),
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            formMessage.textContent = data.message || 'Mensaje enviado con éxito.';
+                            formMessage.style.color = 'var(--primary-color)';
+                            contactForm.reset();
+                        })
+                        .catch(error => {
+                            console.error('Error al enviar el formulario:', error);
+                            formMessage.textContent = 'Hubo un error al enviar tu mensaje. Intenta de nuevo más tarde.';
+                            formMessage.style.color = 'red';
+                        });
+                        */
+
+                    } else {
+                        formMessage.textContent = 'Por favor, completa todos los campos.';
+                        formMessage.style.color = 'red';
+                    }
+                });
+            }
+
+            // --- Animación de scroll al hacer clic en enlaces de navegación ---
+            document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
